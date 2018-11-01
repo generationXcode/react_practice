@@ -1,0 +1,36 @@
+<html>
+    <head></head>
+    <body>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="like_button.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            class Clock extends React.Component{
+                render(){
+                    return (<h1>the time is {this.state.date.toLocaleTimeString()}</h1>);
+                }
+                constructor(props){
+                    super(props);
+                    //state has to be wriitten as it is
+                    this.state = {date:new Date()};
+                }
+                //this has to be written as it is here
+                componentDidMount(){
+                    this.int = setInterval(() => this.tick(),1000);
+                }
+                //this as well
+                componentWillUnmount(){
+                    clearInterval(this.int);
+                }
+                tick(){
+                    this.setState({date:new Date()});
+                }
+            }
+            ReactDOM.render(< Clock /> , document.getElementById("root"));
+        </script>
+        <div id="like_button_container">
+            <div id="root"></div>
+        </div>
+    </body>
+</html>
